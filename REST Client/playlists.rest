@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:3000
+
+### Login the default admin
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+### Create a playlist
+POST {{baseUrl}}/playlists/create
+Content-Type: application/json
+Authorization: {{admin.response.body.token}}
+
+{
+    "name":"p2"
+}
+
+### Get one playlist
+GET {{baseUrl}}/playlists/1
+Authorization: {{admin.response.body.token}}
+
+### Delete one playlist
+DELETE {{baseUrl}}/playlists/1
+Authorization: {{admin.response.body.token}}

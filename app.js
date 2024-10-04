@@ -8,6 +8,7 @@ const corsOptions = {
 };
 
 const authsRouter = require('./routes/auths');
+const playlistsRouter = require('./routes/playlists');
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use(cookieParser());
 app.use(cors(corsOptions));
 
 app.use('/auths', authsRouter);
+app.use('/playlists', playlistsRouter);
 
 module.exports = app;
