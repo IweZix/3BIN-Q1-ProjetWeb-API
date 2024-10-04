@@ -12,6 +12,7 @@ const defaultPLaylists = []
  */
 async function createOnePlaylist(name, token) {
     const user = await verify(token);
+    if (!user) return undefined;
     
     const playlists = parse(jsonDbPath);
     const newPlaylist = {
@@ -22,6 +23,7 @@ async function createOnePlaylist(name, token) {
     };
     playlists.push(newPlaylist);
     serialize(jsonDbPath, playlists);
+
     return newPlaylist;
 };
 
@@ -32,9 +34,13 @@ async function createOnePlaylist(name, token) {
  */
 async function getOnePlaylist(id, token) {
     const user = await verify(token);
+    if (!user) return undefined;
+
     const playlists = parse(jsonDbPath);
     const found = playlists.find((p) => p.id === parseInt(id));
+
     if (found?.userid !== user.id) return undefined;
+
     return found;
 }
 
@@ -45,6 +51,8 @@ async function getOnePlaylist(id, token) {
  */
 async function deleteOnePlaylist(id, token) {
     const user = await verify(token);
+    if (!user) return undefined;
+
     const playlists = parse(jsonDbPath);
     const deleted = playlists.find((p) => p.id === parseInt(id));
     if (deleted?.userid !== user.id) return undefined;
@@ -53,6 +61,7 @@ async function deleteOnePlaylist(id, token) {
         playlists.splice(index, 1);
         serialize(jsonDbPath, playlists);
     }
+    
     return deleted;
 }
 
