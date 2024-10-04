@@ -11,7 +11,7 @@ Pour vous assurer que Git traque votre nouveau projet imbriqué dans un repo, vo
 vous pouvez utiliser le **.gitignore** existant. Vous pouvez aussi éventuellement utiliser le 
 **.git**, mais cela signifie que vous hériterez de tous les changements associés au boilerplate, 
 et que vous devrez changer l'origine (`git remote remove origin`, `git remote add origin LINK_TO_YOUR_REPO`). Nous vous recommandons plutôt d'effacer le répertoire **.git** et de 
-réinitialiser un projet git (`git init`, `git remote add origin LINK_TO_YOUR_REPO`).
+réinitialiser un projet git (`git init`,`git remote add origin LINK_TO_YOUR_REPO`).
 - Installation des dépendances et démarrage du boilerplate : 
 ```shell
 cd nom-de-votre-projet # (le nom donné au répertoire de votre projet)
