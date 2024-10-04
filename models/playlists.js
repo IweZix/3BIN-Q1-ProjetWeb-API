@@ -43,9 +43,11 @@ async function getOnePlaylist(id, token) {
  * @param {Integer} id the playlist's id
  * @returns {Object} the deleted playlist
  */
-function deleteOnePlaylist(id) {
+async function deleteOnePlaylist(id, token) {
+    const user = await verify(token);
     const playlists = parse(jsonDbPath);
     const deleted = playlists.find((p) => p.id === parseInt(id));
+    if (deleted?.userid !== user.id) return undefined;
     if (deleted) {
         const index = playlists.indexOf(deleted);
         playlists.splice(index, 1);

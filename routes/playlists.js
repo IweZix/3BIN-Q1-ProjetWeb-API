@@ -48,9 +48,10 @@ router.get('/:id', authorize, async (req, res) => {
  */
 router.delete('/:id', authorize, async (req, res) => {
     const id = req?.params?.id?.length !== 0 ? req.params.id : undefined;
-    if (!id) return res.sendStatus(400);
+    const token = req?.headers?.authorization?.length !== 0 ? req.headers.authorization : undefined;
+    if (!id || !token) return res.sendStatus(400);
 
-    const playlist = deleteOnePlaylist(id);
+    const playlist = await deleteOnePlaylist(id, token);
     if (!playlist) return res.sendStatus(404);
 
     return res.json(playlist);
