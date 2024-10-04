@@ -10,13 +10,7 @@ const saltRounds = 10;
 
 const jsonDbPath = path.join(__dirname, '/../data/users.json');
 
-const defaultUsers = [
-  {
-    id: 1,
-    username: 'admin',
-    password: bcrypt.hashSync('admin', saltRounds),
-  },
-];
+const defaultUsers = [];
 
 async function login(username, password) {
   const userFound = readOneUserFromUsername(username);
@@ -53,6 +47,21 @@ async function register(username, password) {
 
   const authenticatedUser = {
     username,
+    token,
+  };
+
+  return authenticatedUser;
+}
+
+async function verify(token) {
+  const decoded = jwt.verify(token, jwtSecret);
+  if (!decoded) return undefined;
+  
+  const userFound = readOneUserFromUsername(decoded.username);
+  if (!userFound) return undefined;
+
+  const authenticatedUser = {
+    username: decoded.username,
     token,
   };
 
@@ -97,5 +106,6 @@ function getNextId() {
 module.exports = {
   login,
   register,
+  verify,
   readOneUserFromUsername,
 };

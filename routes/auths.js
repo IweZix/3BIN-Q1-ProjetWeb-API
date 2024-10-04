@@ -1,13 +1,18 @@
 const express = require('express');
-const { register, login } = require('../models/users');
+const { register, login, verify } = require('../models/users');
 
 const router = express.Router();
 
 /* Verify a user */
-router.get('/verify', async (req, res) => {
-  const token = req?.token?.length !== 0 ? req.token : undefined;
-
+router.post('/verify', async (req, res) => {
+  const token = req?.body?.token?.length !== 0 ? req.body.token : undefined;
   if (!token) return res.sendStatus(401);
+
+  const authenticatedUser = await verify(token);
+
+  if (!authenticatedUser) return res.sendStatus(401);
+
+  return res.json(authenticatedUser);
 });
 
 /* Register a user */
