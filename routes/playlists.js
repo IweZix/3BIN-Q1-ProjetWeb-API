@@ -8,13 +8,16 @@ const router = express.Router();
 /**
  * Create a playlist
  */
-router.post('/create', authorize, (req, res) => {
+router.post('/create', authorize, async (req, res) => {
     const name = req?.body?.name?.length !== 0 ? req.body.name : undefined;
-    if (!name) return res.sendStatus(400);
+    const token = req?.headers?.authorization?.length !== 0 ? req.headers.authorization : undefined;
+    
+    if (!name || !token) return res.sendStatus(400);
 
-    const createdPlaylist = createOnePlaylist(name);
+    const createdPlaylist = await createOnePlaylist(name, token);
     if (!createdPlaylist) return res.sendStatus(500);
-
+    console.log(createdPlaylist);
+    
     return res.json(createdPlaylist);
 });
 

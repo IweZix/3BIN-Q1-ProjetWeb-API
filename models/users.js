@@ -61,6 +61,7 @@ async function verify(token) {
   if (!userFound) return undefined;
 
   const authenticatedUser = {
+    id: userFound.id,
     username: decoded.username,
     token,
   };

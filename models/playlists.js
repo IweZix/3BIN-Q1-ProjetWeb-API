@@ -1,5 +1,6 @@
 const { parse, serialize } = require('../utils/json');
 const path = require('node:path');
+const { verify } = require('./users');
 const jsonDbPath = path.join(__dirname, '/../data/playlists.json');
 
 const defaultPLaylists = []
@@ -9,10 +10,13 @@ const defaultPLaylists = []
  * @param {String} name the playlist's name 
  * @returns {Object} the created playlist 
  */
-function createOnePlaylist(name) {
+async function createOnePlaylist(name, token) {
+    const user = await verify(token);
+    
     const playlists = parse(jsonDbPath);
     const newPlaylist = {
         id: playlists.length + 1,
+        userid: user.id,
         name,
         songs: []
     };

@@ -18,6 +18,15 @@ Content-Type: application/json
     "password":"admin"
 }
 
+### Create the admin user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
 
 ### Create the manager user
 POST {{baseUrl}}/auths/register
