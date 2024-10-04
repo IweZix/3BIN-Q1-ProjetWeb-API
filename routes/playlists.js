@@ -34,7 +34,7 @@ router.get('/all', async (req, res) => {
 router.get('/:id', authorize, async (req, res) => {
     const id = req?.params?.id?.length !== 0 ? req.params.id : undefined;
     const token = req?.headers?.authorization?.length !== 0 ? req.headers.authorization : undefined;
-    if (!id) return res.sendStatus(400);
+    if (!id || !token) return res.sendStatus(400);
 
     const playlist = await getOnePlaylist(id, token);
     if (!playlist) return res.sendStatus(404);
