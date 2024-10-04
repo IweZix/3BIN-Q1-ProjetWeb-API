@@ -30,9 +30,11 @@ async function createOnePlaylist(name, token) {
  * @param {Integer} id the playlist's id
  * @returns {Object} the playlist
  */
-function getOnePlaylist(id) {
+async function getOnePlaylist(id, token) {
+    const user = await verify(token);
     const playlists = parse(jsonDbPath);
     const found = playlists.find((p) => p.id === parseInt(id));
+    if (found?.userid !== user.id) return undefined;
     return found;
 }
 

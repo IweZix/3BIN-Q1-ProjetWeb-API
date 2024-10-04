@@ -20,7 +20,7 @@ Authorization: {{admin.response.body.token}}
 }
 
 ### Get one playlist
-GET {{baseUrl}}/playlists/1
+GET {{baseUrl}}/playlists/3
 Authorization: {{admin.response.body.token}}
 
 ### Delete one playlist
