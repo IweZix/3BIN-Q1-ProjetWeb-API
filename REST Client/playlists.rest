@@ -23,6 +23,10 @@ Authorization: {{admin.response.body.token}}
 GET {{baseUrl}}/playlists/4
 Authorization: {{admin.response.body.token}}
 
+### Get all playlists of user
+GET {{baseUrl}}/playlists/all
+Authorization: {{admin.response.body.token}}
+
 ### Delete one playlist
 DELETE {{baseUrl}}/playlists/3
 Authorization: {{admin.response.body.token}}
