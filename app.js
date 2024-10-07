@@ -9,6 +9,7 @@ const corsOptions = {
 
 const authsRouter = require('./routes/auths');
 const playlistsRouter = require('./routes/playlists');
+const spotifyRouter = require('./routes/spotify');
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use(cors(corsOptions));
 
 app.use('/auths', authsRouter);
 app.use('/playlists', playlistsRouter);
+app.use('/spotify', spotifyRouter);
 
 module.exports = app;
