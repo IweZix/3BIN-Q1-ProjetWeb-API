@@ -1,5 +1,6 @@
 const express = require('express');
 const { getSomeTracksByNameAndArtist } = require('../models/spotify');
+const { convertIdIntoSong } = require('../utils/spotify');
 
 const router = express.Router();
 
