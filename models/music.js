@@ -18,7 +18,21 @@ async function addOneMusicPlaylist(token,idPlaylist, idMusic) {
     return found;
 };
 
+async function deleteOneMusicPlaylist(token,idPlaylist, idMusic) {
+    const user = await verify(token);
+    if (!user) return undefined;
+
+    const playlists = parse(jsonDbPath);
+    const found = playlists.find((p) => p.id === parseInt(idPlaylist));
+    if (found?.userid !== user.id) return undefined;
+    found.songs.splice(playlists.indexOf(idMusic),1);
+    serialize(jsonDbPath, playlists);
+
+    return found;
+};
 
 
 
-module.exports = { addOneMusicPlaylist };
+
+
+module.exports = { addOneMusicPlaylist, deleteOneMusicPlaylist };
