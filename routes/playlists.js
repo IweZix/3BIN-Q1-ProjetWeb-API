@@ -1,5 +1,6 @@
 const express = require('express');
 const { createOnePlaylist, getOnePlaylist, deleteOnePlaylist } = require('../models/playlists');
+const { addOneMusicPlaylist } = require('../models/music');
 const { authorize } = require('../utils/auths');
 
 const router = express.Router();
@@ -21,12 +22,12 @@ router.post('/create', authorize, async (req, res) => {
     return res.json(createdPlaylist);
 });
 
-/**
- * Get all playlists
- */
-router.get('/all', async (req, res) => {
+// /**
+//  * Get all playlists
+//  */
+// router.get('/all', async (req, res) => {
 
-});
+// });
 
 /**
  * Get a playlist by id
@@ -61,14 +62,25 @@ router.delete('/:id', authorize, async (req, res) => {
  * Add a song to a playlist
  */
 router.post('/add/id', async (req, res) => {
+    const idPLaylist = req?.body?.idPLaylist?.length !== 0 ? req.body.idPLaylist : undefined;
+    const token = req?.headers?.authorization?.length !== 0 ? req.headers.authorization : undefined;
+    const idMusic = req?.body?.idMusic?.length !== 0 ? req.body.idMusic : undefined;
+    console.log(!idMusic);
+    
+    
+    if (!idPLaylist || !token || !idMusic) return res.sendStatus(400);
+
+    const playlist =await addOneMusicPlaylist(token,idPLaylist, idMusic);
+    if (!playlist) return res.sendStatus(500);
+    return res.json(playlist);
 
 });
 
-/**
- * Remove a song from a playlist
- */
-router.post('/delete/id', async (req, res) => {
+// /**
+//  * Remove a song from a playlist
+//  */
+// router.post('/delete/id', async (req, res) => {
 
-});
+// });
 
 module.exports = router;

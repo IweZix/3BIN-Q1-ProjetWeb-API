@@ -1,0 +1,40 @@
+@baseUrl = http://localhost:3000
+
+### Create the admin user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"MrPatate",
+    "password":"MrPatate"
+}
+
+### Login the default admin
+# @name MrPatate
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"MrPatate",
+    "password":"MrPatate"
+}
+
+### Create a playlist
+POST {{baseUrl}}/playlists/create
+Content-Type: application/json
+Authorization: {{MrPatate.response.body.token}}
+
+{
+    "name":"patate1playlist"
+}
+
+
+### Create a music
+POST {{baseUrl}}/playlists/add/id
+Content-Type: application/json
+Authorization: {{MrPatate.response.body.token}}
+
+{
+    "idPLaylist":"1"
+  
+}

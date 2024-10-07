@@ -1,9 +1,9 @@
 const { parse, serialize } = require('../utils/json');
 const path = require('node:path');
 const { verify } = require('./users');
-const jsonDbPath = path.join(__dirname, '/../data/playlists.json');
+const jsonDbPath = path.join(__dirname, '/../data/playlists.json');// eslint-disable-line no-undef
 
-const defaultPLaylists = []
+
 
 /**
  * Create a playlist
