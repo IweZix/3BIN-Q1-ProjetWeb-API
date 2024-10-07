@@ -27,6 +27,14 @@ async function createOnePlaylist(name, token) {
     return newPlaylist;
 };
 
+async function getAllPlaylists(token) {
+    const user = await verify(token);
+    if (!user) return undefined;
+
+    const playlists = parse(jsonDbPath);
+    return playlists.filter((p) => p.userid === user.id);
+}
+
 /**
  * Get a playlist by id
  * @param {Integer} id the playlist's id
@@ -68,5 +76,6 @@ async function deleteOnePlaylist(id, token) {
 module.exports = {
     createOnePlaylist,
     getOnePlaylist,
+    getAllPlaylists,
     deleteOnePlaylist
 };
