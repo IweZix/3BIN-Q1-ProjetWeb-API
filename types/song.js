@@ -1,3 +1,6 @@
+/**
+ * Song class
+ */
 class Song {
 
     constructor(id, title, artist, album, image) {

@@ -2,6 +2,10 @@ const dotenv = require('dotenv');
 const Song = require("../types/song");
 dotenv.config();
 
+/**
+ * Get the token to do requests to the Spotify API
+ * @returns The token to access the Spotify API
+ */
 const getToken = async () => {    
     const result = await fetch('https://accounts.spotify.com/api/token', {
         method: 'POST',
@@ -16,6 +20,11 @@ const getToken = async () => {
     return data.access_token;
 };
 
+/**
+ * Convert a Spotify ID into a Song object
+ * @param {String} id 
+ * @returns A Song object
+ */
 const convertIdIntoSong = async (id) => {
     const result = await fetch(`https://api.spotify.com/v1/tracks/${id}`, {
         method: 'GET',
@@ -25,7 +34,6 @@ const convertIdIntoSong = async (id) => {
     });
 
     const data = await result.json();
-    console.log(data);
     
     return new Song(data.id, data.name, data.artists[0].name, data.album.name, data.album.images[0].url);
 };
