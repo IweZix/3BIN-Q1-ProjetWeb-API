@@ -15,8 +15,8 @@ POST {{baseUrl}}/auths/login
 Content-Type: application/json
 
 {
-    "username":"MrPatate",
-    "password":"MrPatate"
+    "username":"admin",
+    "password":"admin"
 }
 
 ### Create a playlist
@@ -36,7 +36,7 @@ Authorization: {{MrPatate.response.body.token}}
 
 {
     "idPLaylist":"1",
-    "idMusic":"2ewjMyCbNv2X1dB2qIDCwD"
+    "idMusic":"7d391WfC0HtftRcetDFQUy"
 }
 
 ### Create a music

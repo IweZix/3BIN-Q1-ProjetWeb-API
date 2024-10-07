@@ -68,12 +68,11 @@ router.post('/add/id', async (req, res) => {
     const idPLaylist = req?.body?.idPLaylist?.length !== 0 ? req.body.idPLaylist : undefined;
     const token = req?.headers?.authorization?.length !== 0 ? req.headers.authorization : undefined;
     const idMusic = req?.body?.idMusic?.length !== 0 ? req.body.idMusic : undefined;
- 
-    
     
     if (!idPLaylist || !token || !idMusic) return res.sendStatus(400);
 
-    const playlist =await addOneMusicPlaylist(token,idPLaylist, idMusic);
+    const playlist = await addOneMusicPlaylist(token,idPLaylist, idMusic);
+    
     if (!playlist) return res.sendStatus(500);
     return res.json(playlist);
 
@@ -92,7 +91,6 @@ router.post('/delete/id', async (req, res) => {
     const playlist =await deleteOneMusicPlaylist(token,idPLaylist, idMusic);
     if (!playlist) return res.sendStatus(500);
     return res.json(playlist);
-
 });
 
 module.exports = router;
