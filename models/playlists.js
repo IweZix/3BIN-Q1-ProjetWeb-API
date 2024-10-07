@@ -8,6 +8,7 @@ const defaultPLaylists = []
 /**
  * Create a playlist
  * @param {String} name the playlist's name 
+ * @param {String} token the user's token
  * @returns {Object} the created playlist 
  */
 async function createOnePlaylist(name, token) {
@@ -27,6 +28,11 @@ async function createOnePlaylist(name, token) {
     return newPlaylist;
 };
 
+/**
+ * Get all playlists
+ * @param {String} token the user's token
+ * @returns {Object} the user's playlists
+ */
 async function getAllPlaylists(token) {
     const user = await verify(token);
     if (!user) return undefined;
@@ -38,6 +44,7 @@ async function getAllPlaylists(token) {
 /**
  * Get a playlist by id
  * @param {Integer} id the playlist's id
+ * @param {String} token the user's token
  * @returns {Object} the playlist
  */
 async function getOnePlaylist(id, token) {
@@ -55,6 +62,7 @@ async function getOnePlaylist(id, token) {
 /**
  * Delete a playlist by id
  * @param {Integer} id the playlist's id
+ * @param {String} token the user's token
  * @returns {Object} the deleted playlist
  */
 async function deleteOnePlaylist(id, token) {
