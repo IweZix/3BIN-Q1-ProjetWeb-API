@@ -1,5 +1,5 @@
 const express = require('express');
-const { createOnePlaylist, getOnePlaylist, deleteOnePlaylist } = require('../models/playlists');
+const { createOnePlaylist, getOnePlaylist, deleteOnePlaylist, getAllPlaylists } = require('../models/playlists');
 const { addOneMusicPlaylist } = require('../models/music');
 const { authorize } = require('../utils/auths');
 
@@ -17,17 +17,21 @@ router.post('/create', authorize, async (req, res) => {
 
     const createdPlaylist = await createOnePlaylist(name, token);
     if (!createdPlaylist) return res.sendStatus(500);
-    console.log(createdPlaylist);
     
     return res.json(createdPlaylist);
 });
 
-// /**
-//  * Get all playlists
-//  */
-// router.get('/all', async (req, res) => {
+/**
+ * Get all playlists
+ */
+router.get('/all', authorize, async (req, res) => {
+    const token = req?.headers?.authorization?.length !== 0 ? req.headers.authorization : undefined;
+    if (!token) return res.sendStatus(400);
 
-// });
+    const playlists = await getAllPlaylists(token);
+    if (!playlists) return res.sendStatus(404);
+    return res.json(playlists);
+});
 
 /**
  * Get a playlist by id
@@ -39,7 +43,6 @@ router.get('/:id', authorize, async (req, res) => {
 
     const playlist = await getOnePlaylist(id, token);
     if (!playlist) return res.sendStatus(404);
-    console.log(playlist);
     
     return res.json(playlist);
 });
