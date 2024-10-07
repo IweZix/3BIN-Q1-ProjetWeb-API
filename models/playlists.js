@@ -2,6 +2,7 @@ const { parse, serialize } = require('../utils/json');
 const path = require('node:path');
 const { verify } = require('./users');
 const jsonDbPath = path.join(__dirname, '/../data/playlists.json');// eslint-disable-line no-undef
+const { transformPlaylistWithSpotify } = require('../utils/spotify');
 
 
 
@@ -38,7 +39,13 @@ async function getAllPlaylists(token) {
     if (!user) return undefined;
 
     const playlists = parse(jsonDbPath);
-    return playlists.filter((p) => p.userid === user.id);
+    playlists.filter((p) => p.userid === user.id);
+    for (let i = 0; i < playlists.length; i++) {
+        console.log(playlists[i].songs);
+        
+        playlists[i].songs = await transformPlaylistWithSpotify(playlists[i].songs);
+    }
+    return playlists;
 }
 
 /**
@@ -55,7 +62,7 @@ async function getOnePlaylist(id, token) {
     const found = playlists.find((p) => p.id === parseInt(id));
 
     if (found?.userid !== user.id) return undefined;
-
+    found.songs = await transformPlaylistWithSpotify(found.songs);
     return found;
 }
 

@@ -25,12 +25,28 @@ const convertIdIntoSong = async (id) => {
     });
 
     const data = await result.json();
-    console.log(data);
+      console.log("in");
+      console.log(data);
     
-    return new Song(data.id, data.name, data.artists[0].name, data.album.name, data.album.images[0].url);
+    return new Song(data.id, data.name, data.artists, data.album.name, data.album.images[0].url);
 };
+
+
+async function transformPlaylistWithSpotify(playlists) {
+    const resultSongs = [];    
+    for(let song in playlists){
+
+        const transformate = await convertIdIntoSong(song);
+        console.log( transformate);
+        resultSongs.push(transformate);
+    }
+    return resultSongs;
+
+}
+
 
 module.exports = {
     getToken,
-    convertIdIntoSong
+    convertIdIntoSong,
+    transformPlaylistWithSpotify
 };

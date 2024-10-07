@@ -25,7 +25,7 @@ Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}
 
 {
-    "name":"patate1playlist"
+    "name":"patateDamsoplaylist"
 }
 
 
@@ -36,8 +36,19 @@ Authorization: {{MrPatate.response.body.token}}
 
 {
     "idPLaylist":"1",
-    "idMusic":"iehdiomazejmaojedera1234567890°PMLFR45YUIOP¨£%M/."
+    "idMusic":"2ewjMyCbNv2X1dB2qIDCwD"
 }
+
+### Create a music
+POST {{baseUrl}}/playlists/add/id
+Content-Type: application/json
+Authorization: {{MrPatate.response.body.token}}
+
+{
+    "idPLaylist":"1",
+    "idMusic":"6YWjskKykdPsBuiTBOg1VK"
+}
+
 
 ### Delete a music non existant
 POST {{baseUrl}}/playlists/delete/id
@@ -60,3 +71,6 @@ Authorization: {{MrPatate.response.body.token}}
 }
 
 
+### Get all playlists of user
+GET {{baseUrl}}/playlists/all
+Authorization: {{MrPatate.response.body.token}}
