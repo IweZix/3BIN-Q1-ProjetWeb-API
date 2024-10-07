@@ -18,7 +18,7 @@ async function addOneMusicPlaylist(token,idPlaylist, idMusic) {
     return found;
 };
 
-async function deleteOneMusicPlaylist(token,idPlaylist, idMusic) {
+async function  deleteOneMusicPlaylist(token,idPlaylist, idMusic) {
     const user = await verify(token);
     if (!user) return undefined;
 
