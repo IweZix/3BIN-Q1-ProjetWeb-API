@@ -7,7 +7,7 @@ const getToken = async () => {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + btoa(process.env.CLIENT_ID + ':' + process.env.SECRET)
+            'Authorization': 'Basic ' + btoa(process.env.CLIENT_ID + ':' + process.env.SECRET) // eslint-disable-line no-undef
         },
         body: 'grant_type=client_credentials'
     });

@@ -35,17 +35,28 @@ Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}
 
 {
-    "idPLaylist":"2",
+    "idPLaylist":"1",
     "idMusic":"iehdiomazejmaojedera1234567890°PMLFR45YUIOP¨£%M/."
 }
 
-### Delete a music
+### Delete a music non existant
 POST {{baseUrl}}/playlists/delete/id
 Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}
 
 {
-    "idPLaylist":"2",
+    "idPLaylist":"1",
     "idMusic":"%M/."
 }
+
+### Delete a music non existant
+POST {{baseUrl}}/playlists/delete/id
+Content-Type: application/json
+Authorization: {{MrPatate.response.body.token}}
+
+{
+    "idPLaylist":"1",
+    "idMusic":"iehdiomazejmaojedera1234567890°PMLFR45YUIOP¨£%M/."
+}
+
 

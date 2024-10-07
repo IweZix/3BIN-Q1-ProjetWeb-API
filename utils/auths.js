@@ -1,13 +1,15 @@
 const jwt = require('jsonwebtoken');
 const { readOneUserFromUsername } = require('../models/users');
 
-const jwtSecret = 'ilovemypizza!';
+const jwtSecret = 'MrPatatE!';
 
 const authorize = (req, res, next) => {
   const token = req.get('authorization');
   if (!token) return res.sendStatus(401);
 
   try {
+    console.log('token', token);
+    
     const decoded = jwt.verify(token, jwtSecret);
     console.log('decoded', decoded);
     const { username } = decoded;

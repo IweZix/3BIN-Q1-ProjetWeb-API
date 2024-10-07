@@ -25,7 +25,13 @@ async function deleteOneMusicPlaylist(token,idPlaylist, idMusic) {
     const playlists = parse(jsonDbPath);
     const found = playlists.find((p) => p.id === parseInt(idPlaylist));
     if (found?.userid !== user.id) return undefined;
-    found.songs.splice(playlists.indexOf(idMusic),1);
+    console.log(playlists);
+    
+    const index=found.songs.indexOf(idMusic);
+    console.log(index);
+    
+    if(index===-1) return undefined;
+    found.songs.splice(index,1);
     serialize(jsonDbPath, playlists);
 
     return found;
