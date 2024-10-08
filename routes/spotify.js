@@ -1,5 +1,5 @@
 const express = require('express');
-const { getSomeTracksByNameAndArtist } = require('../models/spotify');
+const { getSomeTracksByNameAndArtist, getSomeTracksByName } = require('../models/spotify');
 
 const router = express.Router();
 
@@ -19,6 +19,20 @@ router.get('/:name/:artist', async (req, res) => {
     return res.json(tracks);
 });
 
+/**
+ * Get some tracks by name
+ */
+router.get('/:name', async (req, res) => {
+    const name = req?.params?.name?.length !== 0 ? req.params.name : undefined;
+
+    if (!name) {
+        return res.status(400).json({ error: 'Invalid name' });
+    }
+
+    const tracks = await getSomeTracksByName(name);
+    
+    return res.json(tracks);
+});
 
 
 
