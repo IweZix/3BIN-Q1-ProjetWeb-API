@@ -23,9 +23,7 @@ const getSomeTracksByNameAndArtist = async (name, artist) => {
   const data = await result.json();
 
   const trackList = [];
-  for (const track of data.tracks.items) {
-    console.log(track);
-    
+  for (const track of data.tracks.items) {    
     trackList.push(
       new Song(
         track.id,

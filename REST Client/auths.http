@@ -1,23 +1,5 @@
 @baseUrl = http://localhost:3000
 
-### Try to login an unknow user
-POST {{baseUrl}}/auths/login
-Content-Type: application/json
-
-{
-    "username":"unknow",
-    "password":"admin"
-}
-
-### Login the default admin
-POST {{baseUrl}}/auths/login
-Content-Type: application/json
-
-{
-    "username":"admin",
-    "password":"admin"
-}
-
 ### Create the admin user
 POST {{baseUrl}}/auths/register
 Content-Type: application/json
@@ -37,6 +19,26 @@ Content-Type: application/json
     "password":"manager"
 }
 
+
+### Try to login an unknow user should not pass return 401
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"unknow",
+    "password":"admin"
+}
+
+### Login the default admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+
 ### Login the manager user
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
@@ -53,3 +55,4 @@ Content-Type: application/json
 {
     "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hbmFnZXIiLCJpYXQiOjE3MjgzMjI0NzksImV4cCI6MTgxNDcyMjQ3OX0._Oinnd_32lrd-5gdrNUVfFmhtpQ565O6D6Aj385LdAs"
 }
+
