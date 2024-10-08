@@ -1,3 +1,7 @@
 @baseUrl = http://localhost:3000
 
+### Get some tracks by name and artist
 GET {{baseUrl}}/spotify/plk/nouvelles
+
+### Get some tracks by name
+GET {{baseUrl}}/spotify/dinos
