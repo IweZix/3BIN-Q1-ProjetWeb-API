@@ -1,7 +1,7 @@
 const { parse, serialize } = require('../utils/json');
 const path = require('node:path');
 const { verify } = require('./users');
-const { transformPlaylistWithSpotify, convertIdIntoSong } = require('../utils/spotify');
+const { transformPlaylistWithSpotify } = require('../utils/spotify');
 
 const jsonDbPath = path.join(__dirname, '/../data/playlists.json');// eslint-disable-line no-undef
 

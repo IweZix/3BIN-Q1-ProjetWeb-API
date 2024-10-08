@@ -29,7 +29,7 @@ Authorization: {{MrPatate.response.body.token}}
 }
 
 
-### Create a music
+### Create a music should return 201
 POST {{baseUrl}}/playlists/add/id
 Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}
@@ -39,7 +39,7 @@ Authorization: {{MrPatate.response.body.token}}
     "idMusic":"7d391WfC0HtftRcetDFQUy"
 }
 
-### Create a music
+### Create a music should return 201
 POST {{baseUrl}}/playlists/add/id
 Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}
@@ -50,7 +50,7 @@ Authorization: {{MrPatate.response.body.token}}
 }
 
 
-### Delete a music non existant
+### Delete a music non existant should return 500
 POST {{baseUrl}}/playlists/delete/id
 Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}
@@ -60,7 +60,7 @@ Authorization: {{MrPatate.response.body.token}}
     "idMusic":"%M/."
 }
 
-### Delete a music non existant
+### Delete a music non existant should return 500
 POST {{baseUrl}}/playlists/delete/id
 Content-Type: application/json
 Authorization: {{MrPatate.response.body.token}}

@@ -40,9 +40,7 @@ async function getAllPlaylists(token) {
 
     const playlists = parse(jsonDbPath);
     playlists.filter((p) => p.userid === user.id);
-    for (let i = 0; i < playlists.length; i++) {
-        console.log(playlists[i].songs);
-        
+    for (let i = 0; i < playlists.length; i++) {        
         playlists[i].songs = await transformPlaylistWithSpotify(playlists[i].songs);
     }
     return playlists;
