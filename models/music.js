@@ -24,10 +24,8 @@ async function addOneMusicPlaylist(token, idPlaylist, idMusic) {
     
     found.songs.push(idMusic);
     serialize(jsonDbPath, playlists);
-    found.songs = await transformPlaylistWithSpotify(found.songs);
 
-
-    return found;
+    return idMusic;
 };
 
 /**

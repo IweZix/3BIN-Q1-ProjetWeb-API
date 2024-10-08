@@ -71,11 +71,10 @@ router.post('/add/id', async (req, res) => {
     
     if (!idPLaylist || !token || !idMusic) return res.sendStatus(400);
 
-    const playlist = await addOneMusicPlaylist(token,idPLaylist, idMusic);
+    const returned = await addOneMusicPlaylist(token,idPLaylist, idMusic);
+    if (!returned) return res.sendStatus(500);
     
-    if (!playlist) return res.sendStatus(500);
-    return res.json(playlist);
-
+    return res.sendStatus(201);
 });
 
 /**
