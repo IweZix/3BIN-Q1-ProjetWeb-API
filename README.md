@@ -23,5 +23,6 @@
 
 | URI           | Méthode | Body | Action                  |
 |:--------------|:--------|:-----|:------------------------|
-| /:name/:artist       | GET         | N/A     | Get some tracks by name and artist                        |
-| /:name       | GET        |  N/A    | Get some tracks by name                        |
+| /tracks/:name/:artist       | GET         | N/A     | Get some tracks by name and artist                        |
+| /tracks/:name       | GET        |  N/A    | Get some tracks by name                        |
+| /images/:id       | GET        |  N/A    | Get some tracks by name                        |
