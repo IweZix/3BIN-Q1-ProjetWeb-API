@@ -37,7 +37,7 @@ const convertIdIntoSong = async (id) => {
 
     const data = await result.json();
     
-    return new Song(data.id, data.name, data.artists, data.album.name, data.album.images[0].url);
+    return new Song(data.id, data.name, data.artists[0].name, data.album.name, data.album.images[0].url);
 };
 
 

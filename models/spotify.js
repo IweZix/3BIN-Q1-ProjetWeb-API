@@ -73,13 +73,14 @@ const getSomeTracksByName = async (name) => {
   return trackList;
 };
 
-const getImage = async (trackId) => {
+const getImage = async (trackId) => {  
   const result = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
       method: 'GET',
       headers: {
           'Authorization': 'Bearer ' + (await getToken())
       }
   });
+  
 
   const data = await result.json();
   return data.album.images[0].url;
