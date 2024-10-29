@@ -20,7 +20,7 @@ Authorization: {{admin.response.body.token}}
 }
 
 ### Get one playlist
-GET {{baseUrl}}/playlists/4
+GET {{baseUrl}}/playlists/2
 Authorization: {{admin.response.body.token}}
 
 ### Get all playlists of user

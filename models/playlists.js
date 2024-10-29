@@ -39,11 +39,11 @@ async function getAllPlaylists(token) {
     if (!user) return undefined;
 
     const playlists = parse(jsonDbPath);
-    playlists.filter((p) => p.userid === user.id);
-    for (let i = 0; i < playlists.length; i++) {        
-        playlists[i].songs = await transformPlaylistWithSpotify(playlists[i].songs);
+    const filtred=playlists.filter((p) => p.userid === user.id);
+    for (let i = 0; i < filtred.length; i++) {        
+        filtred[i].songs = await transformPlaylistWithSpotify(filtred[i].songs);
     }
-    return playlists;
+    return filtred;
 }
 
 /**
